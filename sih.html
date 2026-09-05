@@ -1,0 +1,2672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TransformAI | NTRO</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#071a2d;
+    color:white;
+    padding:25px 18px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px;
+    margin-bottom:35px;
+}
+
+.logo-icon{
+    width:43px;
+    height:43px;
+    background:linear-gradient(135deg,#16a085,#1abc9c);
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo-text h2{
+    font-size:19px;
+}
+
+.logo-text p{
+    font-size:10px;
+    color:#8ea5ba;
+    margin-top:3px;
+    letter-spacing:1px;
+}
+
+.menu-title{
+    color:#70879c;
+    font-size:11px;
+    text-transform:uppercase;
+    margin:20px 12px 10px;
+    letter-spacing:1px;
+}
+
+.menu-item{
+    padding:13px 14px;
+    margin:5px 0;
+    border-radius:9px;
+    color:#aebdcc;
+    cursor:pointer;
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.menu-item:hover,
+.menu-item.active{
+    background:#123450;
+    color:white;
+}
+
+.sidebar-footer{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    right:25px;
+    border-top:1px solid #1c354a;
+    padding-top:18px;
+    color:#8196a8;
+    font-size:11px;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+.topbar{
+    height:72px;
+    background:white;
+    border-bottom:1px solid #e5eaf0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 35px;
+}
+
+.page-title h1{
+    font-size:22px;
+}
+
+.page-title p{
+    font-size:12px;
+    color:#7a8797;
+    margin-top:3px;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    color:#238a66;
+    margin-right:15px;
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#2ecc71;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#0c7c70;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:30px 35px;
+}
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h2{
+    font-size:25px;
+    margin-bottom:6px;
+}
+
+.welcome p{
+    color:#718094;
+    font-size:14px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e4e9ef;
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 3px 12px rgba(18,38,63,.04);
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.card-title h3{
+    font-size:16px;
+}
+
+.step{
+    font-size:11px;
+    color:#0c8d78;
+    background:#e7f7f3;
+    padding:5px 9px;
+    border-radius:20px;
+}
+
+/* ================= UPLOAD ================= */
+
+.upload-area{
+    border:2px dashed #cbd6df;
+    border-radius:12px;
+    min-height:190px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    padding:25px;
+}
+
+.upload-area:hover{
+    border-color:#16a085;
+    background:#f7fcfb;
+}
+
+.upload-icon{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#e8f7f4;
+    color:#0d8b78;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.upload-area h4{
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.upload-area p{
+    font-size:12px;
+    color:#8491a0;
+    text-align:center;
+}
+
+.browse-btn{
+    margin-top:14px;
+    border:1px solid #0c8d78;
+    color:#087764;
+    background:white;
+    border-radius:7px;
+    padding:8px 16px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+#fileInput{
+    display:none;
+}
+
+.file-name{
+    margin-top:10px;
+    font-size:12px;
+    color:#0c8d78;
+    display:none;
+}
+
+.divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:20px 0;
+    color:#a2adba;
+    font-size:11px;
+}
+
+.divider:before,
+.divider:after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#e7ebef;
+}
+
+textarea{
+    width:100%;
+    height:120px;
+    resize:vertical;
+    border:1px solid #dbe2e8;
+    border-radius:9px;
+    padding:13px;
+    outline:none;
+    font-size:13px;
+}
+
+textarea:focus,
+select:focus{
+    border-color:#15a085;
+}
+
+/* ================= SETTINGS ================= */
+
+.setting{
+    margin-bottom:17px;
+}
+
+.setting label{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    margin-bottom:7px;
+    color:#526174;
+}
+
+select{
+    width:100%;
+    height:40px;
+    border:1px solid #dce3e9;
+    border-radius:8px;
+    padding:0 10px;
+    background:white;
+    color:#344354;
+    outline:none;
+}
+
+.range-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+input[type=range]{
+    flex:1;
+    accent-color:#0c917c;
+}
+
+.range-value{
+    width:65px;
+    font-size:11px;
+    color:#637286;
+}
+
+/* ================= OUTPUT TYPES ================= */
+
+.output-section{
+    margin-top:22px;
+}
+
+.output-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.output-option{
+    border:1px solid #dfe6ec;
+    border-radius:9px;
+    padding:12px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.output-option:hover{
+    border-color:#16a085;
+    background:#f8fcfb;
+}
+
+.output-option input{
+    margin-right:7px;
+    accent-color:#0d907b;
+}
+
+.output-option strong{
+    font-size:12px;
+}
+
+.output-option small{
+    display:block;
+    margin-left:22px;
+    color:#8491a0;
+    font-size:10px;
+    margin-top:3px;
+}
+
+/* ================= PROMPT REFINEMENT ================= */
+
+.prompt-section{
+    margin-top:22px;
+}
+
+.prompt-card{
+    background:white;
+    border:1px solid #e4e9ef;
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 3px 12px rgba(18,38,63,.04);
+}
+
+.prompt-description{
+    color:#7b8898;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:16px;
+}
+
+.prompt-box{
+    border:1px solid #dbe3e9;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:14px;
+}
+
+.prompt-label{
+    background:#f5f8fa;
+    border-bottom:1px solid #e1e7eb;
+    padding:10px 13px;
+    font-size:11px;
+    font-weight:700;
+    color:#526174;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.prompt-label span{
+    font-size:10px;
+    font-weight:500;
+    color:#8a97a5;
+}
+
+.prompt-box textarea{
+    border:none;
+    border-radius:0;
+    min-height:115px;
+    height:115px;
+}
+
+.prompt-box textarea:focus{
+    border:none;
+}
+
+.prompt-actions{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.refine-btn{
+    border:none;
+    background:#0c8d78;
+    color:white;
+    padding:11px 18px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.refine-btn:hover{
+    background:#087765;
+}
+
+.copy-btn{
+    border:1px solid #ccd8df;
+    background:white;
+    color:#526174;
+    padding:10px 15px;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.copy-btn:hover{
+    border-color:#0c8d78;
+    color:#0c8d78;
+}
+
+.prompt-status{
+    display:none;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    color:#218761;
+    margin-left:auto;
+}
+
+.prompt-status .status-dot{
+    width:7px;
+    height:7px;
+}
+
+.refined-box{
+    display:none;
+    margin-top:16px;
+    border:1px solid #a9ded3;
+    border-radius:10px;
+    background:#f7fcfb;
+    overflow:hidden;
+}
+
+.refined-header{
+    padding:11px 13px;
+    background:#e9f8f4;
+    border-bottom:1px solid #cdebe4;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.refined-header strong{
+    font-size:12px;
+    color:#087765;
+}
+
+.refined-header span{
+    font-size:10px;
+    color:#268c77;
+}
+
+#refinedPrompt{
+    background:#f7fcfb;
+    border:none;
+    min-height:190px;
+    height:190px;
+    color:#253c49;
+    line-height:1.6;
+}
+
+#refinedPrompt:focus{
+    border:none;
+}
+
+/* ================= TRANSFORM ================= */
+
+.transform-container{
+    margin-top:22px;
+    background:linear-gradient(135deg,#062b3d,#0c5c62);
+    border-radius:14px;
+    padding:25px;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.transform-text h3{
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.transform-text p{
+    color:#b7d5d8;
+    font-size:12px;
+}
+
+.transform-btn{
+    border:none;
+    background:#20c39a;
+    color:white;
+    padding:13px 25px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.transform-btn:hover{
+    background:#19ab86;
+}
+
+.transform-btn:disabled{
+    background:#52777a;
+    cursor:not-allowed;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    display:none;
+    margin-top:22px;
+    background:white;
+    border:1px solid #e3e8ed;
+    border-radius:12px;
+    padding:30px;
+    text-align:center;
+}
+
+.spinner{
+    width:40px;
+    height:40px;
+    border:4px solid #dceeea;
+    border-top-color:#0d8e78;
+    border-radius:50%;
+    animation:spin .9s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg)
+    }
+}
+
+/* ================= OUTPUT ================= */
+
+#outputArea{
+    display:none;
+    margin-top:25px;
+}
+
+.output-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.output-header h2{
+    font-size:20px;
+}
+
+.download-btn{
+    border:1px solid #ccd7df;
+    background:white;
+    padding:8px 13px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.tabs{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.tab{
+    border:1px solid #d9e1e7;
+    background:white;
+    padding:9px 13px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.tab.active{
+    background:#0b8875;
+    color:white;
+    border-color:#0b8875;
+}
+
+.generated-content{
+    background:white;
+    border:1px solid #e2e8ed;
+    border-radius:12px;
+    padding:25px;
+    min-height:230px;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.generated-content h3{
+    margin-bottom:12px;
+}
+
+.generated-content ul{
+    margin-left:20px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:950px){
+
+    .sidebar{
+        width:70px;
+        padding:15px 10px;
+    }
+
+    .logo-text,
+    .menu-item span,
+    .menu-title,
+    .sidebar-footer{
+        display:none;
+    }
+
+    .logo{
+        justify-content:center;
+    }
+
+    .main{
+        margin-left:70px;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .content{
+        padding:20px 15px;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .status{
+        display:none;
+    }
+
+    .output-grid{
+        grid-template-columns:1fr;
+    }
+
+    .transform-container{
+        flex-direction:column;
+        gap:20px;
+        align-items:flex-start;
+    }
+
+    .prompt-status{
+        margin-left:0;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">T</div>
+
+        <div class="logo-text">
+            <h2>TransformAI</h2>
+            <p>NTRO CONTENT ENGINE</p>
+        </div>
+
+    </div>
+
+    <div class="menu-title">Workspace</div>
+
+    <div class="menu-item active">
+        <b>▦</b>
+        <span>Dashboard</span>
+    </div>
+
+    <div class="menu-item">
+        <b>↗</b>
+        <span>My Transformations</span>
+    </div>
+
+    <div class="menu-item">
+        <b>◈</b>
+        <span>Templates</span>
+    </div>
+
+    <div class="menu-title">System</div>
+
+    <div class="menu-item">
+        <b>⚙</b>
+        <span>Settings</span>
+    </div>
+
+    <div class="menu-item">
+        <b>?</b>
+        <span>Help & Documentation</span>
+    </div>
+
+    <div class="sidebar-footer">
+        <strong>NTRO</strong><br>
+        National Technical Research Organisation
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+<header class="topbar">
+
+    <div class="page-title">
+
+        <h1>Content Transformation</h1>
+
+        <p>
+            Convert one source into multiple communication artefacts
+        </p>
+
+    </div>
+
+    <div class="user-area">
+
+        <div class="status">
+
+            <div class="status-dot"></div>
+
+            AI Engine Online
+
+        </div>
+
+        <div class="avatar">N</div>
+
+    </div>
+
+</header>
+
+
+<section class="content">
+
+
+<div class="welcome">
+
+    <h2>Transform your content with AI</h2>
+
+    <p>
+        Upload your source material, refine your prompt,
+        configure communication parameters, and generate
+        professional outputs.
+    </p>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+
+<!-- ================= SOURCE ================= -->
+
+<div class="card">
+
+<div class="card-title">
+
+    <h3>01 &nbsp; Source Content</h3>
+
+    <span class="step">INPUT</span>
+
+</div>
+
+
+<div class="upload-area"
+     onclick="document.getElementById('fileInput').click()">
+
+    <div class="upload-icon">↑</div>
+
+    <h4>Drop your document here</h4>
+
+    <p>
+        PDF, DOCX, TXT, PNG, JPG, MP4 or other supported files
+    </p>
+
+    <button class="browse-btn"
+        onclick="event.stopPropagation();
+        document.getElementById('fileInput').click()">
+
+        Browse Files
+
+    </button>
+
+    <input type="file"
+           id="fileInput"
+           accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.mp4">
+
+    <div class="file-name"
+         id="fileName">
+    </div>
+
+</div>
+
+
+<div class="divider">
+    OR ENTER CONTENT MANUALLY
+</div>
+
+
+<textarea id="sourceText"
+placeholder="Paste an article, report, advisory, research paper, incident description or any contextual information here..."></textarea>
+
+</div>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<div class="card">
+
+<div class="card-title">
+
+    <h3>02 &nbsp; Generation Settings</h3>
+
+    <span class="step">CONFIGURE</span>
+
+</div>
+
+
+<div class="setting">
+
+<label>Target Audience</label>
+
+<select id="audience">
+
+<option>General Public</option>
+<option>Government Officials</option>
+<option>Senior Executives</option>
+<option>Technical Experts</option>
+<option>Security Professionals</option>
+<option>Students</option>
+<option>Media</option>
+
+</select>
+
+</div>
+
+
+<div class="setting">
+
+<label>Tone</label>
+
+<select id="tone">
+
+<option>Professional</option>
+<option>Formal</option>
+<option>Technical</option>
+<option>Informative</option>
+<option>Persuasive</option>
+<option>Urgent</option>
+<option>Simple & Friendly</option>
+
+</select>
+
+</div>
+
+
+<div class="setting">
+
+<label>Language</label>
+
+<select id="language">
+
+<option value="English">English</option>
+<option value="Hindi">हिन्दी (Hindi)</option>
+<option value="Telugu">తెలుగు (Telugu)</option>
+
+</select>
+
+</div>
+
+
+<div class="setting">
+
+<label>Communication Objective</label>
+
+<select id="objective">
+
+<option>Inform</option>
+<option>Educate</option>
+<option>Warn</option>
+<option>Persuade</option>
+<option>Summarize</option>
+<option>Brief Decision Makers</option>
+
+</select>
+
+</div>
+
+
+<div class="setting">
+
+<label>Level of Detail</label>
+
+<div class="range-row">
+
+<input type="range"
+       id="detail"
+       min="1"
+       max="3"
+       value="2"
+       oninput="updateDetail()">
+
+<span class="range-value"
+      id="detailValue">
+
+      Medium
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- ================= OUTPUTS ================= -->
+
+<div class="output-section">
+
+<div class="card-title">
+
+<h3>03 &nbsp; Select Outputs</h3>
+
+<span class="step">MULTI-SELECT</span>
+
+</div>
+
+
+<div class="output-grid">
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="Executive Summary"
+       checked>
+
+<strong>Executive Summary</strong>
+
+<small>
+Concise briefing
+</small>
+
+</label>
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="Advisory">
+
+<strong>Advisory</strong>
+
+<small>
+Structured advisory
+</small>
+
+</label>
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="LinkedIn Post"
+       checked>
+
+<strong>LinkedIn Post</strong>
+
+<small>
+Professional post
+</small>
+
+</label>
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="X Thread">
+
+<strong>X / Twitter</strong>
+
+<small>
+Thread format
+</small>
+
+</label>
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="Presentation">
+
+<strong>Presentation</strong>
+
+<small>
+Slides + notes
+</small>
+
+</label>
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="Infographic">
+
+<strong>Infographic</strong>
+
+<small>
+Visual content
+</small>
+
+</label>
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="Video Package">
+
+<strong>Video Package</strong>
+
+<small>
+Script + storyboard
+</small>
+
+</label>
+
+
+<label class="output-option">
+
+<input type="checkbox"
+       value="Report">
+
+<strong>Detailed Report</strong>
+
+<small>
+Structured report
+</small>
+
+</label>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- 04 PROMPT REFINEMENT -->
+<!-- ================================================= -->
+
+<section class="prompt-section">
+
+<div class="prompt-card">
+
+<div class="card-title">
+
+    <h3>04 &nbsp; AI Prompt Refinement</h3>
+
+    <span class="step">PROMPT ENGINEERING</span>
+
+</div>
+
+
+<p class="prompt-description">
+
+    TransformAI first understands your broken, incomplete,
+    or poorly structured request. It then converts it into
+    a clear, precise and high-quality AI prompt before
+    generating the final communication artefact.
+
+</p>
+
+
+<!-- RAW PROMPT -->
+
+<div class="prompt-box">
+
+    <div class="prompt-label">
+
+        <span>RAW / BROKEN PROMPT</span>
+
+        <span>USER INPUT</span>
+
+    </div>
+
+    <textarea
+        id="rawPrompt"
+        placeholder="Example: make a security post from this report and make it professional...">
+
+    </textarea>
+
+</div>
+
+
+<div class="prompt-actions">
+
+    <button class="refine-btn"
+            onclick="refinePrompt()">
+
+        ✨ IMPROVE PROMPT
+
+    </button>
+
+
+    <div class="prompt-status"
+         id="promptStatus">
+
+        <div class="status-dot"></div>
+
+        High-quality prompt ready
+
+    </div>
+
+</div>
+
+
+<!-- REFINED PROMPT -->
+
+<div class="refined-box"
+     id="refinedBox">
+
+    <div class="refined-header">
+
+        <strong>
+            ✨ HIGH-QUALITY PROMPT
+        </strong>
+
+        <span>
+            AI REFINED
+        </span>
+
+    </div>
+
+
+    <textarea
+        id="refinedPrompt"
+        placeholder="Your refined prompt will appear here...">
+    </textarea>
+
+
+    <div style="padding:10px 13px;
+                border-top:1px solid #cdebe4;">
+
+        <button class="copy-btn"
+                onclick="copyPrompt()">
+
+            📋 Copy Prompt
+
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= TRANSFORM ================= -->
+
+<div class="transform-container">
+
+<div class="transform-text">
+
+<h3>
+Ready to transform?
+</h3>
+
+<p>
+First refine your prompt, then generate your selected
+communication artefacts.
+</p>
+
+</div>
+
+
+<button class="transform-btn"
+        id="transformButton"
+        onclick="transformContent()"
+        disabled>
+
+✨ TRANSFORM CONTENT
+
+</button>
+
+</div>
+
+
+<!-- ================= LOADING ================= -->
+
+<div class="loading"
+     id="loading">
+
+<div class="spinner"></div>
+
+<h3>
+AI is transforming your content...
+</h3>
+
+<p id="loadingText">
+Understanding source context and intent
+</p>
+
+</div>
+
+
+<!-- ================= OUTPUT ================= -->
+
+<div id="outputArea">
+
+<div class="output-header">
+
+<div>
+
+<h2>
+Generated Artefacts
+</h2>
+
+<p style="font-size:12px;
+          color:#8290a0;
+          margin-top:4px;">
+
+AI-generated outputs based on your
+refined prompt and selected parameters
+
+</p>
+
+</div>
+
+
+<button class="download-btn"
+        onclick="downloadOutput()">
+
+↓ Download
+
+</button>
+
+</div>
+
+
+<div class="tabs"
+     id="tabs">
+</div>
+
+
+<div class="generated-content"
+     id="generatedContent">
+</div>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+<script>
+
+/* ================================================= */
+/* FILE INPUT */
+/* ================================================= */
+
+const fileInput =
+document.getElementById("fileInput");
+
+const fileName =
+document.getElementById("fileName");
+
+fileInput.addEventListener("change",function(){
+
+if(this.files.length>0){
+
+fileName.style.display="block";
+
+fileName.innerHTML=
+"✓ Selected: "+this.files[0].name;
+
+/*
+If a file is selected, we still allow the user
+to enter a broken prompt describing what they
+want the system to do with the file.
+*/
+
+}
+
+});
+
+
+/* ================================================= */
+/* DETAIL */
+/* ================================================= */
+
+function updateDetail(){
+
+const value =
+document.getElementById("detail").value;
+
+const display =
+document.getElementById("detailValue");
+
+if(value==1)
+display.innerText="Brief";
+
+if(value==2)
+display.innerText="Medium";
+
+if(value==3)
+display.innerText="Detailed";
+
+}
+
+
+/* ================================================= */
+/* GENERATED OUTPUT STORAGE */
+/* ================================================= */
+
+let generatedOutputs={};
+
+
+/* ================================================= */
+/* REFINED PROMPT STATUS */
+/* ================================================= */
+
+let promptIsRefined=false;
+
+
+/* ================================================= */
+/* REFINE PROMPT */
+/* ================================================= */
+
+function refinePrompt(){
+
+const rawPrompt =
+document.getElementById("rawPrompt")
+.value.trim();
+
+const source =
+document.getElementById("sourceText")
+.value.trim();
+
+const audience =
+document.getElementById("audience")
+.value;
+
+const tone =
+document.getElementById("tone")
+.value;
+
+const language =
+document.getElementById("language")
+.value;
+
+const objective =
+document.getElementById("objective")
+.value;
+
+const detail =
+document.getElementById("detail")
+.value;
+
+
+/* ----------------------------------------- */
+/* VALIDATION */
+/* ----------------------------------------- */
+
+if(!rawPrompt && !source){
+
+alert(
+"Please enter a broken prompt or source content first."
+);
+
+return;
+
+}
+
+
+/* ----------------------------------------- */
+/* SHOW REFINING STATE */
+/* ----------------------------------------- */
+
+const refineButton =
+document.querySelector(".refine-btn");
+
+refineButton.innerText=
+"⏳ REFINING PROMPT...";
+
+refineButton.disabled=true;
+
+
+/* ----------------------------------------- */
+/* SIMULATE AI PROMPT ENGINE */
+/* ----------------------------------------- */
+
+setTimeout(()=>{
+
+let inputContext =
+rawPrompt ||
+"Analyze the provided source content.";
+
+
+/*
+The system creates a much more structured
+prompt from the user's broken request.
+*/
+
+const refined = `
+
+You are an expert AI content transformation assistant.
+
+TASK:
+Understand the user's original request and transform the
+provided source material into a clear, accurate and
+professional communication artefact.
+
+ORIGINAL USER REQUEST:
+"${inputContext}"
+
+SOURCE CONTENT:
+${source || "[Source document uploaded by the user]"}
+
+TARGET AUDIENCE:
+${audience}
+
+TONE:
+${tone}
+
+LANGUAGE:
+${language}
+
+COMMUNICATION OBJECTIVE:
+${objective}
+
+LEVEL OF DETAIL:
+${detail==1 ? "Brief and concise" :
+ detail==2 ? "Moderately detailed" :
+ "Detailed and comprehensive"}
+
+INSTRUCTIONS:
+
+1. Carefully understand the intent behind the original
+   user request, even if the request is incomplete,
+   grammatically incorrect or poorly structured.
+
+2. Extract the important facts, entities, events,
+   context and key information from the source.
+
+3. Do not invent unsupported facts or alter the meaning
+   of the source material.
+
+4. Organize the information logically and clearly.
+
+5. Adapt the communication specifically for the
+   selected target audience.
+
+6. Use the selected tone consistently.
+
+7. Produce the output in ${language}.
+
+8. Follow the requested communication objective:
+   ${objective}.
+
+9. Maintain factual accuracy and clarity.
+
+10. Remove unnecessary repetition, ambiguity and
+    irrelevant information.
+
+11. Make the final content professional, readable,
+    coherent and suitable for its intended use.
+
+OUTPUT REQUIREMENT:
+Generate the selected communication artefact(s) from
+the refined understanding of the request and source.
+
+Before generating the final output, ensure that the
+content satisfies the audience, tone, language,
+objective and detail requirements.
+
+FINAL RESPONSE:
+Return only the polished communication artefact requested
+by the user, without explaining the prompt-engineering
+process unless specifically requested.
+
+`.trim();
+
+
+document.getElementById("refinedPrompt")
+.value=refined;
+
+
+/* ----------------------------------------- */
+/* SHOW REFINED PROMPT */
+/* ----------------------------------------- */
+
+document.getElementById("refinedBox")
+.style.display="block";
+
+document.getElementById("promptStatus")
+.style.display="flex";
+
+
+/* ----------------------------------------- */
+/* ENABLE TRANSFORM */
+/* ----------------------------------------- */
+
+promptIsRefined=true;
+
+const transformButton =
+document.getElementById("transformButton");
+
+transformButton.disabled=false;
+
+refineButton.innerText=
+"✓ PROMPT REFINED";
+
+refineButton.disabled=false;
+
+
+/* ----------------------------------------- */
+/* SCROLL TO PROMPT */
+/* ----------------------------------------- */
+
+document.getElementById("refinedBox")
+.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+
+},1500);
+
+}
+
+
+/* ================================================= */
+/* COPY REFINED PROMPT */
+/* ================================================= */
+
+function copyPrompt(){
+
+const prompt =
+document.getElementById("refinedPrompt")
+.value;
+
+if(!prompt)
+return;
+
+navigator.clipboard.writeText(prompt)
+.then(()=>{
+
+const button =
+document.querySelector(".copy-btn");
+
+button.innerText=
+"✓ Copied";
+
+setTimeout(()=>{
+
+button.innerText=
+"📋 Copy Prompt";
+
+},1500);
+
+});
+
+}
+
+
+/* ================================================= */
+/* TRANSFORM */
+/* ================================================= */
+
+function transformContent(){
+
+/*
+IMPORTANT:
+The final generation is allowed only after
+the broken prompt has been refined.
+*/
+
+if(!promptIsRefined){
+
+alert(
+"Please improve the prompt first before generating the output."
+);
+
+return;
+
+}
+
+
+const source =
+document.getElementById("sourceText")
+.value.trim();
+
+const file =
+document.getElementById("fileInput")
+.files.length;
+
+const refinedPrompt =
+document.getElementById("refinedPrompt")
+.value.trim();
+
+
+if(!source && !file){
+
+alert(
+"Please upload a file or enter source content."
+);
+
+return;
+
+}
+
+
+if(!refinedPrompt){
+
+alert(
+"High-quality prompt is missing."
+);
+
+return;
+
+}
+
+
+const selected =
+[
+...document.querySelectorAll(
+".output-option input:checked"
+)
+].map(input=>input.value);
+
+
+if(selected.length===0){
+
+alert(
+"Please select at least one output format."
+);
+
+return;
+
+}
+
+
+const loading =
+document.getElementById("loading");
+
+const outputArea =
+document.getElementById("outputArea");
+
+const loadingText =
+document.getElementById("loadingText");
+
+
+outputArea.style.display="none";
+
+loading.style.display="block";
+
+
+const messages=[
+
+"Reading refined prompt",
+
+"Understanding source context and intent",
+
+"Extracting key information and entities",
+
+"Applying audience, tone and language",
+
+"Generating communication artefacts",
+
+"Validating generated content"
+
+];
+
+
+let index=0;
+
+
+const interval=setInterval(()=>{
+
+loadingText.innerText=
+messages[index];
+
+index++;
+
+if(index>=messages.length)
+index=0;
+
+},500);
+
+
+setTimeout(()=>{
+
+clearInterval(interval);
+
+loading.style.display="none";
+
+createOutputs(selected);
+
+outputArea.style.display="block";
+
+outputArea.scrollIntoView({
+behavior:"smooth"
+});
+
+},3200);
+
+}
+
+
+/* ================================================= */
+/* CREATE OUTPUTS */
+/* ================================================= */
+
+function createOutputs(selected){
+
+generatedOutputs={};
+
+selected.forEach(type=>{
+
+generatedOutputs[type]=
+generateDemoContent(type);
+
+});
+
+
+const tabs =
+document.getElementById("tabs");
+
+tabs.innerHTML="";
+
+
+selected.forEach((type,index)=>{
+
+const button =
+document.createElement("button");
+
+button.className=
+"tab"+(index===0?" active":"");
+
+button.innerText=type;
+
+
+button.onclick=function(){
+
+document
+.querySelectorAll(".tab")
+.forEach(tab=>
+tab.classList.remove("active")
+);
+
+this.classList.add("active");
+
+showOutput(type);
+
+};
+
+
+tabs.appendChild(button);
+
+});
+
+
+showOutput(selected[0]);
+
+}
+
+
+/* ================================================= */
+/* GENERATE CONTENT */
+/* ================================================= */
+
+function generateDemoContent(type){
+
+const audience =
+document.getElementById("audience")
+.value;
+
+const tone =
+document.getElementById("tone")
+.value;
+
+const language =
+document.getElementById("language")
+.value;
+
+const objective =
+document.getElementById("objective")
+.value;
+
+
+/* ================================================= */
+/* ENGLISH */
+/* ================================================= */
+
+if(language==="English"){
+
+if(type==="Executive Summary"){
+
+return `
+
+<h3>Executive Summary</h3>
+
+<p>
+<strong>Overview:</strong>
+The submitted information has been analyzed using the
+refined AI prompt and converted into a concise
+executive briefing.
+</p>
+
+<br>
+
+<p><strong>Key Findings</strong></p>
+
+<ul>
+<li>Primary issue and relevant context identified.</li>
+<li>Important events and entities extracted.</li>
+<li>Potential impact evaluated.</li>
+<li>Information structured according to the intended audience.</li>
+</ul>
+
+<br>
+
+<p><strong>Recommended Actions</strong></p>
+
+<ul>
+<li>Validate critical information.</li>
+<li>Prioritize important actions.</li>
+<li>Continue monitoring developments.</li>
+</ul>
+
+<br>
+
+<small>
+Audience: ${audience} |
+Tone: ${tone} |
+Objective: ${objective} |
+Language: English
+</small>
+
+`;
+
+}
+
+
+if(type==="Advisory"){
+
+return `
+
+<h3>Security / Information Advisory</h3>
+
+<p>
+<strong>Subject:</strong>
+Advisory based on the refined analysis of submitted source.
+</p>
+
+<p>
+<strong>Severity:</strong> HIGH
+</p>
+
+<br>
+
+<p><strong>Overview</strong></p>
+
+<p>
+The submitted information indicates developments
+requiring stakeholder attention.
+</p>
+
+<br>
+
+<p><strong>Recommended Actions</strong></p>
+
+<ul>
+<li>Validate the reported information.</li>
+<li>Assess potential impact.</li>
+<li>Implement appropriate mitigation.</li>
+<li>Monitor further developments.</li>
+</ul>
+
+`;
+
+}
+
+
+if(type==="LinkedIn Post"){
+
+return `
+
+<h3>LinkedIn Post</h3>
+
+<p>
+In an increasingly connected world, timely information
+analysis and effective communication are essential.
+</p>
+
+<p>
+The submitted information has been analyzed and
+converted into a professional communication format
+suitable for the selected audience.
+</p>
+
+<p>
+The refined prompt ensures that the message remains
+clear, relevant, structured and aligned with the
+intended communication objective.
+</p>
+
+<br>
+
+<p>
+#Technology #Intelligence #CyberSecurity
+#Innovation #DigitalTransformation
+</p>
+
+`;
+
+}
+
+
+if(type==="X Thread"){
+
+return `
+
+<h3>X / Twitter Thread</h3>
+
+<p><strong>1/</strong> Important developments have been
+identified from the submitted information.</p>
+
+<p><strong>2/</strong> The analysis highlights the
+key context and relevant information.</p>
+
+<p><strong>3/</strong> The potential implications
+should be evaluated carefully.</p>
+
+<p><strong>4/</strong> Continued monitoring and
+appropriate action are recommended.</p>
+
+`;
+
+}
+
+
+if(type==="Presentation"){
+
+return `
+
+<h3>Presentation Structure</h3>
+
+<p><strong>Slide 1 — Title</strong></p>
+<p>Overview of Submitted Information</p>
+
+<br>
+
+<p><strong>Slide 2 — Situation Overview</strong></p>
+<p>Context and key developments.</p>
+
+<br>
+
+<p><strong>Slide 3 — Key Findings</strong></p>
+<p>Important observations extracted from the source.</p>
+
+<br>
+
+<p><strong>Slide 4 — Impact Assessment</strong></p>
+<p>Potential operational implications.</p>
+
+<br>
+
+<p><strong>Slide 5 — Recommendations</strong></p>
+<p>Priority actions and next steps.</p>
+
+`;
+
+}
+
+
+if(type==="Infographic"){
+
+return `
+
+<h3>Infographic Content</h3>
+
+<p><strong>MAIN TOPIC</strong></p>
+
+<p>Key developments identified from the source.</p>
+
+<br>
+
+<p><strong>KEY FACT 01</strong></p>
+<p>Primary issue and relevant context.</p>
+
+<br>
+
+<p><strong>KEY FACT 02</strong></p>
+<p>Important events and entities.</p>
+
+<br>
+
+<p><strong>IMPACT</strong></p>
+<p>Potential implications for stakeholders.</p>
+
+<br>
+
+<p><strong>ACTION</strong></p>
+<p>Recommended next steps.</p>
+
+`;
+
+}
+
+
+if(type==="Video Package"){
+
+return `
+
+<h3>Video Package</h3>
+
+<p>
+<strong>Scene 1 — Introduction</strong>
+</p>
+
+<p>
+Visual: Relevant contextual imagery.<br>
+Narration: This report highlights important
+developments requiring attention.
+</p>
+
+<br>
+
+<p>
+<strong>Scene 2 — Key Information</strong>
+</p>
+
+<p>
+Visual: Timeline and information graphics.<br>
+Narration: Analysis identifies several
+important observations.
+</p>
+
+<br>
+
+<p>
+<strong>Scene 3 — Impact</strong>
+</p>
+
+<p>
+Visual: Impact visualization.<br>
+Narration: These developments may have
+important implications for stakeholders.
+</p>
+
+<br>
+
+<p>
+<strong>Scene 4 — Conclusion</strong>
+</p>
+
+<p>
+Visual: Summary graphics.<br>
+Narration: Timely analysis and informed action remain essential.
+</p>
+
+`;
+
+}
+
+
+if(type==="Report"){
+
+return `
+
+<h3>Detailed Report</h3>
+
+<p><strong>1. Introduction</strong></p>
+
+<p>
+The submitted source has been analyzed and structured
+according to the refined communication requirements.
+</p>
+
+<br>
+
+<p><strong>2. Situation Overview</strong></p>
+
+<p>
+Relevant context and major developments identified
+from the source.
+</p>
+
+<br>
+
+<p><strong>3. Key Findings</strong></p>
+
+<ul>
+<li>Important information extracted.</li>
+<li>Relevant entities and events identified.</li>
+<li>Potential implications assessed.</li>
+</ul>
+
+<br>
+
+<p><strong>4. Impact Assessment</strong></p>
+
+<p>
+Potential operational and strategic implications
+should be evaluated based on validated information.
+</p>
+
+<br>
+
+<p><strong>5. Recommendations</strong></p>
+
+<ul>
+<li>Validate critical information.</li>
+<li>Prioritize relevant actions.</li>
+<li>Continue monitoring developments.</li>
+</ul>
+
+`;
+
+}
+
+}
+
+
+/* ================================================= */
+/* HINDI */
+/* ================================================= */
+
+if(language==="Hindi"){
+
+if(type==="Executive Summary"){
+
+return `
+
+<h3>कार्यकारी सारांश</h3>
+
+<p>
+<strong>अवलोकन:</strong>
+प्रस्तुत जानकारी का विश्लेषण करके एक संक्षिप्त
+कार्यकारी विवरण तैयार किया गया है।
+</p>
+
+<br>
+
+<p><strong>मुख्य निष्कर्ष</strong></p>
+
+<ul>
+<li>मुख्य विषय और संदर्भ की पहचान की गई।</li>
+<li>महत्वपूर्ण घटनाओं और संस्थाओं की पहचान की गई।</li>
+<li>संभावित प्रभाव का मूल्यांकन किया गया।</li>
+</ul>
+
+<br>
+
+<p><strong>सुझाए गए कदम</strong></p>
+
+<ul>
+<li>महत्वपूर्ण जानकारी का सत्यापन करें।</li>
+<li>प्राथमिकता के आधार पर कार्रवाई करें।</li>
+<li>आगे के घटनाक्रम पर निगरानी रखें।</li>
+</ul>
+
+<br>
+
+<small>
+श्रोता: ${audience} |
+भाषा: हिन्दी
+</small>
+
+`;
+
+}
+
+
+if(type==="Advisory"){
+
+return `
+
+<h3>सुरक्षा / सूचना सलाह</h3>
+
+<p>
+<strong>विषय:</strong>
+प्रस्तुत स्रोत के आधार पर सलाह
+</p>
+
+<p>
+<strong>गंभीरता:</strong> उच्च
+</p>
+
+<br>
+
+<p><strong>अवलोकन</strong></p>
+
+<p>
+प्रस्तुत जानकारी ऐसे घटनाक्रम को दर्शाती है
+जिस पर संबंधित हितधारकों का ध्यान आवश्यक है।
+</p>
+
+<br>
+
+<p><strong>अनुशंसित कार्रवाई</strong></p>
+
+<ul>
+<li>प्राप्त जानकारी का सत्यापन करें।</li>
+<li>संभावित प्रभाव का आकलन करें।</li>
+<li>उचित सुरक्षा उपाय लागू करें।</li>
+</ul>
+
+`;
+
+}
+
+
+if(type==="LinkedIn Post"){
+
+return `
+
+<h3>LinkedIn पोस्ट</h3>
+
+<p>
+आज के तेजी से बदलते डिजिटल वातावरण में
+समय पर जानकारी का विश्लेषण अत्यंत महत्वपूर्ण है।
+</p>
+
+<p>
+प्रस्तुत विश्लेषण महत्वपूर्ण घटनाक्रम और
+संगठनों के लिए आवश्यक विचारों को सामने लाता है।
+</p>
+
+<br>
+
+<p>
+#Technology #CyberSecurity #Intelligence
+#DigitalTransformation
+</p>
+
+`;
+
+}
+
+
+if(type==="Presentation"){
+
+return `
+
+<h3>प्रस्तुति संरचना</h3>
+
+<p><strong>स्लाइड 1 — शीर्षक</strong></p>
+<p>प्रस्तुत जानकारी का अवलोकन</p>
+
+<br>
+
+<p><strong>स्लाइड 2 — स्थिति का अवलोकन</strong></p>
+<p>पृष्ठभूमि और प्रमुख घटनाक्रम।</p>
+
+<br>
+
+<p><strong>स्लाइड 3 — मुख्य निष्कर्ष</strong></p>
+<p>स्रोत से प्राप्त महत्वपूर्ण जानकारी।</p>
+
+<br>
+
+<p><strong>स्लाइड 4 — प्रभाव मूल्यांकन</strong></p>
+<p>संभावित प्रभाव और परिणाम।</p>
+
+<br>
+
+<p><strong>स्लाइड 5 — अनुशंसाएँ</strong></p>
+<p>प्राथमिक कार्रवाई और अगले कदम।</p>
+
+`;
+
+}
+
+}
+
+
+/* ================================================= */
+/* TELUGU */
+/* ================================================= */
+
+if(language==="Telugu"){
+
+if(type==="Executive Summary"){
+
+return `
+
+<h3>కార్యనిర్వాహక సారాంశం</h3>
+
+<p>
+<strong>అవలోకనం:</strong>
+అందించిన సమాచారాన్ని విశ్లేషించి సంక్షిప్త
+కార్యనిర్వాహక వివరణ రూపొందించబడింది.
+</p>
+
+<br>
+
+<p><strong>ముఖ్యమైన అంశాలు</strong></p>
+
+<ul>
+<li>ప్రధాన సమస్య మరియు సందర్భాన్ని గుర్తించాం.</li>
+<li>ముఖ్యమైన సంఘటనలు మరియు అంశాలను గుర్తించాం.</li>
+<li>సంభావ్య ప్రభావాన్ని అంచనా వేశాం.</li>
+</ul>
+
+<br>
+
+<p><strong>సిఫార్సు చేసిన చర్యలు</strong></p>
+
+<ul>
+<li>ముఖ్యమైన సమాచారాన్ని ధృవీకరించండి.</li>
+<li>ప్రాధాన్యత ఆధారంగా చర్యలు తీసుకోండి.</li>
+<li>తదుపరి పరిణామాలను పర్యవేక్షించండి.</li>
+</ul>
+
+<br>
+
+<small>
+ప్రేక్షకులు: ${audience} |
+భాష: తెలుగు
+</small>
+
+`;
+
+}
+
+
+if(type==="Advisory"){
+
+return `
+
+<h3>భద్రత / సమాచార సలహా</h3>
+
+<p>
+<strong>విషయం:</strong>
+అందించిన మూల సమాచారం ఆధారంగా సలహా
+</p>
+
+<p>
+<strong>తీవ్రత:</strong> అధిక
+</p>
+
+<br>
+
+<p><strong>అవలోకనం</strong></p>
+
+<p>
+అందించిన సమాచారం సంబంధిత వ్యక్తులు మరియు
+సంస్థల దృష్టి అవసరమైన పరిణామాలను సూచిస్తుంది.
+</p>
+
+<br>
+
+<p><strong>సిఫార్సు చేసిన చర్యలు</strong></p>
+
+<ul>
+<li>అందించిన సమాచారాన్ని ధృవీకరించండి.</li>
+<li>సంభావ్య ప్రభావాన్ని అంచనా వేయండి.</li>
+<li>తగిన నివారణ చర్యలను అమలు చేయండి.</li>
+</ul>
+
+`;
+
+}
+
+
+if(type==="LinkedIn Post"){
+
+return `
+
+<h3>LinkedIn పోస్ట్</h3>
+
+<p>
+వేగంగా మారుతున్న డిజిటల్ ప్రపంచంలో
+సమయానుకూల సమాచార విశ్లేషణ చాలా ముఖ్యమైనది.
+</p>
+
+<p>
+అందించిన విశ్లేషణ సంస్థలు మరియు నిపుణులు
+గమనించాల్సిన ముఖ్యమైన పరిణామాలను తెలియజేస్తుంది.
+</p>
+
+<br>
+
+<p>
+#Technology #CyberSecurity #Intelligence
+#DigitalTransformation
+</p>
+
+`;
+
+}
+
+
+if(type==="Presentation"){
+
+return `
+
+<h3>ప్రెజెంటేషన్ నిర్మాణం</h3>
+
+<p><strong>స్లైడ్ 1 — శీర్షిక</strong></p>
+<p>అందించిన సమాచారం యొక్క అవలోకనం</p>
+
+<br>
+
+<p><strong>స్లైడ్ 2 — పరిస్థితి అవలోకనం</strong></p>
+<p>నేపథ్యం మరియు ముఖ్యమైన పరిణామాలు.</p>
+
+<br>
+
+<p><strong>స్లైడ్ 3 — ముఖ్యమైన అంశాలు</strong></p>
+<p>మూల సమాచారం నుండి పొందిన ముఖ్యమైన అంశాలు.</p>
+
+<br>
+
+<p><strong>స్లైడ్ 4 — ప్రభావ అంచనా</strong></p>
+<p>సంభావ్య ప్రభావాలు మరియు పరిణామాలు.</p>
+
+<br>
+
+<p><strong>స్లైడ్ 5 — సిఫార్సులు</strong></p>
+<p>ప్రాధాన్యత చర్యలు మరియు తదుపరి దశలు.</p>
+
+`;
+
+}
+
+}
+
+
+return `
+
+<h3>${type}</h3>
+
+<p>
+Content generated successfully in ${language}.
+</p>
+
+`;
+
+}
+
+
+/* ================================================= */
+/* SHOW OUTPUT */
+/* ================================================= */
+
+function showOutput(type){
+
+document.getElementById("generatedContent")
+.innerHTML=
+generatedOutputs[type];
+
+}
+
+
+/* ================================================= */
+/* DOWNLOAD */
+/* ================================================= */
+
+function downloadOutput(){
+
+const activeTab =
+document.querySelector(".tab.active");
+
+if(!activeTab)
+return;
+
+const type =
+activeTab.innerText;
+
+const content =
+document.getElementById("generatedContent")
+.innerText;
+
+const blob =
+new Blob(
+[content],
+{type:"text/plain"}
+);
+
+const url =
+URL.createObjectURL(blob);
+
+const link =
+document.createElement("a");
+
+link.href=url;
+
+link.download=
+type.replaceAll(" ","_")+".txt";
+
+link.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+/* ================================================= */
+/* AUTO-COPY SOURCE INTO RAW PROMPT */
+/* ================================================= */
+
+document.getElementById("sourceText")
+.addEventListener("input",function(){
+
+/*
+If the user has entered source content but hasn't
+written a separate prompt, we don't automatically
+generate anything. The user still explicitly clicks
+"Improve Prompt".
+*/
+
+if(this.value.trim() &&
+   !document.getElementById("rawPrompt").value.trim()){
+
+document.getElementById("rawPrompt").placeholder =
+"Describe what you want the AI to do with this source...";
+
+}
+
+});
+
+
+/* ================================================= */
+/* RESET REFINEMENT IF RAW PROMPT CHANGES */
+/* ================================================= */
+
+document.getElementById("rawPrompt")
+.addEventListener("input",function(){
+
+if(promptIsRefined){
+
+promptIsRefined=false;
+
+document.getElementById("promptStatus")
+.style.display="none";
+
+document.getElementById("refinedBox")
+.style.display="none";
+
+document.getElementById("transformButton")
+.disabled=true;
+
+document.querySelector(".refine-btn")
+.innerText="✨ IMPROVE PROMPT";
+
+}
+
+});
+
+
+</script>
+
+</body>
+</html>
